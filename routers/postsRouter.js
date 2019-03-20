@@ -30,7 +30,6 @@ router.get('/:id', (req, res) => {
 
 //POST new posts
 router.post('/', (req, res) => {
-    //req.body.user_id = 9;
     Posts.insert(req.body)
         .then(newPost => {
             res.status(201).json(newPost)
