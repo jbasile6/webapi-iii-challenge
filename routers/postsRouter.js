@@ -52,6 +52,18 @@ router.delete('/:id', (req, res) => {
         })
 })
 
+//PUT update post by ID
+router.put('/:id', (req, res) => {
+    const id = req.params.id;
+
+    Posts.update(id, req.body)
+        .then(updatedPost => {
+            res.status(200).json({ message: `Post with id number ${id} has been updated` })
+        })
+        .catch( err => {
+            res.status(500).json({ error: `Error updating post with id number ${id}`})
+        })
+})
 
 
 
