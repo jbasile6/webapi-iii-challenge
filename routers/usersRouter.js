@@ -31,7 +31,7 @@ router.get('/:id', (req, res) => {
 //GET user posts by userID
 router.get('/posts/:id', (req, res) => {
     //spent 45 min debugging because i had '/posts/:user_id'
-    //**note to self DO NOT MAKE THAT MISTAKE AGAIN
+    //**note to self DO NOT MAKE THAT MISTAKE AGAIN, check key:value names of correct database
     const userId = req.params.id;
 
     Users.getUserPosts(userId)
@@ -57,6 +57,19 @@ router.post('/', (req, res) => {
             res.status(500).json({ error: 'Error creating new user' })
         })
 });
+
+//DELETE user with specific ID
+router.delete('/:id', (req, res) => {
+    const id = req.params.id;
+
+    Users.remove(id)
+        .then(user => {
+            res.status(200).json({ message: `User with id number ${id} deleted` })
+        })
+        .catch( err => {
+            res.status(500).json({ error: `Error deleting user with id number ${id}` })
+        })
+})
 
 
 
