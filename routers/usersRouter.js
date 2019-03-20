@@ -47,6 +47,18 @@ router.get('/posts/:id', (req, res) => {
         })
 })
 
+//POST new users, name should be uppercase
+router.post('/', (req, res) => {
+    Users.insert(req.body)
+        .then( newUser => {
+            res.status(201).json(newUser);
+        })
+        .catch( err => {
+            res.status(500).json({ error: 'Error creating new user' })
+        })
+});
+
+
 
 
 module.exports = router;
