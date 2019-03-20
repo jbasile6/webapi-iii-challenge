@@ -14,11 +14,14 @@ const server = express();
 server.use(express.json());
 server.use(helmet());
 
+//routing
+server.use('/api/posts', postsRouter);
+
 
 
 server.get('/', (req, res) => {
     res.send('WEB API CHALLENGE III')
-})
+});
 
 
 module.exports = server;
