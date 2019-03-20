@@ -39,6 +39,19 @@ router.post('/', (req, res) => {
         })
 })
 
+//DELETE posts with specific ID
+router.delete('/:id', (req, res) => {
+    const id = req.params.id;
+
+    Posts.remove(id)
+        .then(post => {
+            res.status(200).json({ message: `Post with id number ${id} has been removed` })
+        })
+        .catch( err => {
+            res.status(500).json({ error: `Error removing post with id number ${id}` })
+        })
+})
+
 
 
 
