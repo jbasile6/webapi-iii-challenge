@@ -71,6 +71,19 @@ router.delete('/:id', (req, res) => {
         })
 })
 
+//PUT update user by ID, new name should remain capitalized
+router.put('/:id', (req, res) => {
+    const id = req.params.id;
+
+    Users.update(id, req.body)
+        .then(updatedUser => {
+            res.status(200).json({ message: `User with id number ${id} has been updated` })
+        })
+        .catch( err => {
+            res.status(500).json({ error: `Error updating user with id number ${id}`})
+        })
+})
+
 
 
 
