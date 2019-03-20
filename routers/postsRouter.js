@@ -4,6 +4,7 @@ const Posts = require('../data/helpers/postDb');
 
 const router = express.Router();
 
+//GET all posts
 router.get('/', (req, res, next) => {
     Posts.get()
         .then( post => {
@@ -14,8 +15,9 @@ router.get('/', (req, res, next) => {
         })
 })
 
+//GET posts by ID
 router.get('/:id', (req, res) => {
-    const id = req.params.id;
+    const { id }  = req.params.id;
 
     Posts.getById(id)
         .then( post => {
@@ -25,6 +27,9 @@ router.get('/:id', (req, res) => {
             res.status(500).json({ error: 'There was an error getting the post'})
         })
 })
+
+
+
 
 
 module.exports = router;
