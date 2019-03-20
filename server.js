@@ -7,12 +7,20 @@ const usersRouter = require('./routers/usersRouter');
 const server = express();
 
 //Middleware-------------------------------------------------------------------------------------------------
-
+function upperCaseName( req, res, next) {
+    if (req.body.name) {
+        req.body.name = req.body.name.toUpperCase();
+        next();
+    } else {
+        next();
+    }
+}
 
 //Middleware^^^^^^^^^^---------------------------------------------------------------------------------------
 
 server.use(express.json());
 server.use(helmet());
+server.use(upperCaseName);
 
 //routing
 server.use('/api/posts', postsRouter);
