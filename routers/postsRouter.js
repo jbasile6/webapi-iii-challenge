@@ -10,10 +10,21 @@ router.get('/', (req, res, next) => {
             res.status(200).json(post)
         })
         .catch(err => {
-            res.status(500).json({ error: 'There was an error getting posts'})
+            res.status(500).json({ error: 'There was an error getting the posts'})
         })
 })
 
+router.get('/:id', (req, res) => {
+    const id = req.params.id;
+
+    Posts.getById(id)
+        .then( post => {
+            res.status(200).json(post);
+        })
+        .catch( err => {
+            res.status(500).json({ error: 'There was an error getting the post'})
+        })
+})
 
 
 module.exports = router;
