@@ -16,10 +16,11 @@ server.use(helmet());
 
 //routing
 server.use('/api/posts', postsRouter);
+server.use('/api/users', usersRouter);
 
 
 
-server.get('/', (req, res) => {
+server.get('/', (req, res, next) => {
     res.send('WEB API CHALLENGE III')
 });
 
