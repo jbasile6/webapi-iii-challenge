@@ -29,7 +29,7 @@ server.use('/api/users', usersRouter);
 
 
 server.get('/', (req, res, next) => {
-    res.send('WEB API CHALLENGE III')
+    res.status(200).json({ greeting: process.env.GREETING })
 });
 
 
